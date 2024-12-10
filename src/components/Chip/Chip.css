@@ -1,0 +1,31 @@
+.chip {
+    font-weight: 700;
+    font-size: 15px;
+    padding: 5px 29px;
+    border-radius: 10px;
+}
+
+.chip-sale {
+    color: #fff;
+    background-color: #0D42FF;
+}
+
+.chip-profit {
+    color: #000;
+    background-color: #FFCB05;
+}
+
+.chip-city {
+    font-weight: 400;
+    font-size: 12px;
+    color: #000;
+    background-color: transparent;
+    border: 1px solid #DDDDDD;
+}
+
+.chip-num {
+    font-size: 12px;
+    padding: 5px;
+    color: #7E7F83;
+    background-color: #E9EAED;
+}
