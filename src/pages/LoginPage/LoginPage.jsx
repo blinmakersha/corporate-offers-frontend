@@ -5,15 +5,40 @@ const LoginPage = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
-    const handleLogin = (e) => {
+    const handleLogin = async (e) => {
         e.preventDefault();
-        if (username === 'user' && password === 'pass') {
-            localStorage.setItem('isAuthenticated', 'true');
-            window.location.href = '/';
-        } else {
-            alert('Неверное имя пользователя или пароль');
+        
+        try {
+            const response = await fetch('/user/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ username, password }),
+            });
+    
+            if (response.ok) {
+                const data = await response.json();
+                localStorage.setItem('isAuthenticated', 'true');
+                window.location.href = '/';
+            } else {
+                alert('Неверное имя пользователя или пароль');
+            }
+        } catch (error) {
+            console.error('Ошибка авторизации:', error);
+            alert('Произошла ошибка, попробуйте позже.');
         }
     };
+
+    // const oldHandleLogin = (e) => {
+    //     e.preventDefault();
+    //     if (username === 'user' && password === 'pass') {
+    //         localStorage.setItem('isAuthenticated', 'true');
+    //         window.location.href = '/';
+    //     } else {
+    //         alert('Неверное имя пользователя или пароль');
+    //     }
+    // };
 
     return (
         <div className="auth-page">
