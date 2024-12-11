@@ -8,11 +8,10 @@ import "./index.css";
 import HomePage from "./pages/HomePage/HomePage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 
-const isAuthenticated = () => {
+const ProtectedRoute = ({ children }) => {
+  const isAuthenticated = () => {
   return localStorage.getItem("isAuthenticated") === "true";
 };
-
-const ProtectedRoute = ({ children }) => {
   return isAuthenticated() ? children : <Navigate to="/login" replace />;
 };
 
