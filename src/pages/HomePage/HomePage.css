@@ -1,5 +1,37 @@
-.wrap-offer-card {
+.home-page__wrap-offer-card {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 27px 21px;
+}
+
+.home-page__main-title {
+  color: #455162;
+  font-size: 50px;
+  font-weight: 500;
+}
+
+.home-page__about-user {
+  color: #2F355C;
+  font-size: 15px;
+  font-weight: 500;
+  opacity: 70%;
+  padding-top: 120px;
+  padding-bottom: 22px;
+}
+
+.home-page__info-buttons {
+  display: flex;
+  justify-content: space-between;
+  padding: 22px 0;
+  align-items: center;
+}
+
+.home-page__guide {
+  background-color: white;
+  color: #4D535B;
+  border-radius: 10px;
+  padding: 8px 40px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
 }
