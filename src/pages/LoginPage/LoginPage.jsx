@@ -4,9 +4,23 @@ import "./LoginPage.css";
 const LoginPage = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [message, setMessage] = useState('');
 
     const handleLogin = async (e) => {
         e.preventDefault();
+        setMessage('');
+
+        if (username.trim() === '' || password.trim() === '') {
+            setMessage('Имя пользователя или пароль не может быть пустым.');
+        }
+
+        if (username.length() < 3) {
+            setMessage('Имя пользователя должно содержать не менее 3 символов');
+        }
+
+        if (password.length() < 6) {
+            setMessage('Пароль должен содержать не менее 6 символов');
+        }
         
         try {
             const response = await fetch('/user/login', {
@@ -22,12 +36,18 @@ const LoginPage = () => {
                 localStorage.setItem('isAuthenticated', 'true');
                 window.location.href = '/';
             } else {
-                alert('Неверное имя пользователя или пароль');
+                const errorData = await response.json();
+                setMessage(errorData.message || 'Неверное имя пользователя или пароль');
             }
         } catch (error) {
             console.error('Ошибка авторизации:', error);
-            alert('Произошла ошибка, попробуйте позже.');
+            setMessage('Произошла ошибка, попробуйте позже.');
         }
+    };
+
+    const handleLogout = () => {
+        localStorage.removeItem('isAuthenticated');
+        window.location.href = '/login';
     };
 
     // const oldHandleLogin = (e) => {
@@ -43,7 +63,7 @@ const LoginPage = () => {
     return (
         <div className="auth-page">
             <h1>Авторизация</h1>
-            <form onSubmit={handleLogin}>
+            <form onSubmit={handleLogin} className="auth-form">
                 <div>
                     <label htmlFor="username">Имя пользователя:</label>
                     <input
@@ -65,7 +85,11 @@ const LoginPage = () => {
                     />
                 </div>
                 <button type="submit">Войти</button>
+                {message && <p className="error-message">{message}</p>}
             </form>
+            {localStorage.getItem('isAuthenticated') && (
+                <button onClick={handleLogout}>Выйти</button>
+            )}
         </div>
     );
 };
