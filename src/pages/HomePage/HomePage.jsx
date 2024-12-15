@@ -4,10 +4,12 @@ import Filters from "../../components/Filters/Filters.jsx";
 import Accordion from "../../components/Accordion/Accordion.jsx";
 import "./HomePage.css";
 import { testOfferCards } from "../../utils/testData";
+import ShowMore from "../../components/ShowMore/ShowMore.jsx";
 
 const HomePage = () => {
   const [offerCards, setOfferCards] = useState(testOfferCards);
   const [openFilter, setOpenFilter] = useState(false);
+  const [page, setPage] = useState(10);
 
   return (
     <div className="home-page">
@@ -37,6 +39,9 @@ const HomePage = () => {
             <OfferCard data={item} />
           </span>
         ))}
+      </div>
+      <div className="home-page__wrap-show-more">
+        <ShowMore setPage={setPage}/>
       </div>
     </div>
   );

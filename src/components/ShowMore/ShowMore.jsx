@@ -1,18 +1,13 @@
-import { useState } from 'react';
+import "./ShowMore.css";
 
-const ShowMoreButton = ({ loadMoreItems }) => {
-    const [itemsCount, setItemsCount] = useState(10);
+const ShowMore = (props) => {
+  const { setPage } = props;
 
-    const handleClick = () => {
-        setItemsCount((prevCount) => prevCount + 10);
-        loadMoreItems(itemsCount);
-    };
-
-    return (
-        <button onClick={handleClick}>
-            Показать еще
-        </button>
-    );
+  return (
+    <a class="show-more" onClick={() => setPage((prev) => prev + 50)}>
+      Показать еще...
+    </a>
+  );
 };
 
-export default ShowMoreButton;
+export default ShowMore;

@@ -41,3 +41,9 @@
   gap: 27px;
   margin-bottom: 20px;
 }
+
+.home-page__wrap-show-more {
+  margin-top: 80px;
+  display: flex;
+  justify-content: center;
+}
