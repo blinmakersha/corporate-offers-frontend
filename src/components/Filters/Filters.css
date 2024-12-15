@@ -6,4 +6,13 @@
   border-color: #010837;
   border-radius: 10px;
   padding: 10px 20px;
+  cursor: pointer;
+  border: 1px solid #010837;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+}
+
+.filters-button:hover {
+  background-color: #0f39d3;
 }
