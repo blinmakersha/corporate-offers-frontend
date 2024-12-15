@@ -11,12 +11,11 @@
 }
 
 .home-page__about-user {
-  color: #2F355C;
+  color: #2f355c;
   font-size: 15px;
   font-weight: 500;
   opacity: 70%;
-  padding-top: 120px;
-  padding-bottom: 22px;
+  padding-bottom: 12px;
 }
 
 .home-page__info-buttons {
@@ -28,10 +27,17 @@
 
 .home-page__guide {
   background-color: white;
-  color: #4D535B;
+  color: #4d535b;
   border-radius: 10px;
   padding: 8px 40px;
   text-decoration: none;
   font-size: 14px;
   font-weight: 500;
+}
+
+.home-page__filters {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 27px;
+  margin-bottom: 20px;
 }
