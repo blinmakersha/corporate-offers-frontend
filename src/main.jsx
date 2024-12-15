@@ -11,8 +11,8 @@ import Layout from "../src/components/Layout/Layout.jsx"
 
 const ProtectedRoute = ({ children }) => {
   const isAuthenticated = () => {
-  return localStorage.getItem("isAuthenticated") === "true";
-};
+    return localStorage.getItem("isAuthenticated") === "true";
+  };
   return isAuthenticated() ? children : <Navigate to="/login" replace />;
 };
 
@@ -20,9 +20,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: 
-      <ProtectedRoute>
         <HomePage />
-      </ProtectedRoute>
   },
   {
     path: "/login",
