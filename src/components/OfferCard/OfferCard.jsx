@@ -3,7 +3,7 @@ import "./OfferCard.css";
 import Chip from "../Chip/Chip";
 
 const OfferCard = (props) => {
-  const { data } = props;
+  const { data, isAdmin } = props;
 
   return (
     <div className="offer-card">
@@ -15,6 +15,43 @@ const OfferCard = (props) => {
         >
           {data?.sale ? data.sale : "ВЫГОДА"}
         </Chip>
+        {isAdmin && (
+          <div className="offer-card__edit">
+            <svg
+              width="24px"
+              height="24px"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <rect width="24" height="24" fill="" />
+              <path
+                d="M15.6287 5.12132L4.31497 16.435M15.6287 5.12132L19.1642 8.65685M15.6287 5.12132L17.0429 3.70711C17.4334 3.31658 18.0666 3.31658 18.4571 3.70711L20.5784 5.82843C20.969 6.21895 20.969 6.85212 20.5784 7.24264L19.1642 8.65685M7.85051 19.9706L4.31497 16.435M7.85051 19.9706L19.1642 8.65685M7.85051 19.9706L3.25431 21.0312L4.31497 16.435"
+                stroke="#000000"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </div>
+        )}
+        {isAdmin && (
+          <div className="offer-card__archive">
+            <svg
+              width="24px"
+              height="24px"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fillRule="evenodd"
+                clipRule="evenodd"
+                d="M21 9.75H19.5V18.3107L18.3107 19.5H5.68934L4.5 18.3107L4.5 9.75H3V4.5H21V9.75ZM6 9.75L18 9.75V17.6893L17.6893 18H6.31066L6 17.6893L6 9.75ZM19.5 6V8.25L4.5 8.25L4.5 6L19.5 6ZM9.75 13.5H15V12H9.75V13.5Z"
+                fill="#080341"
+              />
+            </svg>
+          </div>
+        )}
       </div>
       <div className="offer-card__info">
         <h2 className="offer-card__title">{data.title}</h2>
@@ -32,9 +69,9 @@ const OfferCard = (props) => {
                 version="1.1"
                 id="Layer_1"
                 xmlns="http://www.w3.org/2000/svg"
-                xmlns:xlink="http://www.w3.org/1999/xlink"
+                xmlnsXlink="http://www.w3.org/1999/xlink"
                 viewBox="0 0 368.666 368.666"
-                xml:space="preserve"
+                xmlSpace="preserve"
               >
                 <g id="XMLID_2_">
                   <g>
