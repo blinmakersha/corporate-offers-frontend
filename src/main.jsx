@@ -7,7 +7,9 @@ import {
 import "./index.css";
 import HomePage from "./pages/HomePage/HomePage";
 import LoginPage from "./pages/LoginPage/LoginPage";
-import Layout from "../src/components/Layout/Layout.jsx"
+import AdminPage from "./pages/AdminPage/AdminPage";
+import CreateOfferCard from "./pages/CreateOfferCardPage/CreateOfferCardPage.jsx";
+import Layout from "../src/components/Layout/Layout.jsx";
 
 const ProtectedRoute = ({ children }) => {
   const isAuthenticated = () => {
@@ -19,12 +21,19 @@ const ProtectedRoute = ({ children }) => {
 const router = createBrowserRouter([
   {
     path: "/",
-    element: 
-        <HomePage />
+    element: <HomePage />,
+  },
+  {
+    path: "/admin",
+    element: <AdminPage />,
   },
   {
     path: "/login",
     element: <LoginPage />,
+  },
+  {
+    path: "create-offer-car",
+    element: <CreateOfferCard />,
   },
 ]);
 

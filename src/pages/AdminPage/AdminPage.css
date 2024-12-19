@@ -1,16 +1,16 @@
-.home-page__wrap-offer-card {
+.admin-page__wrap-offer-card {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 27px 21px;
 }
 
-.home-page__main-title {
+.admin-page__main-title {
   color: #455162;
   font-size: 50px;
   font-weight: 500;
 }
 
-.home-page__about-user {
+.admin-page__about-user {
   color: #2f355c;
   font-size: 15px;
   font-weight: 500;
@@ -18,43 +18,14 @@
   padding-bottom: 12px;
 }
 
-.home-page__info-buttons {
+.admin-page__info-buttons {
   display: flex;
   justify-content: space-between;
   padding: 22px 0;
   align-items: center;
 }
 
-.home-page__guide {
-  background-color: white;
-  color: #4d535b;
-  border-radius: 10px;
-  padding: 8px 40px;
-  text-decoration: none;
-  font-size: 14px;
-  font-weight: 500;
-}
-
-.home-page__filters {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 27px;
-  margin-bottom: 20px;
-}
-
-.home-page__wrap-show-more {
-  margin-top: 80px;
-  display: flex;
-  justify-content: center;
-}
-
-.home-page__info-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-}
-
-.home-page__edit {
+.admin-page__exit {
   background-color: white;
   color: #4d535b;
   border-radius: 10px;
@@ -62,8 +33,61 @@
   text-decoration: none;
   display: flex;
   align-items: center;
-  font-size: 14px;
+  font-size: 15px;
+  font-weight: 500;
+  gap: 6px;
+}
+
+.admin-page__filters {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 27px;
+  margin-bottom: 20px;
+}
+
+.admin-page__wrap-show-more {
+  margin-top: 80px;
+  display: flex;
+  justify-content: center;
+}
+
+.admin-page__info-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.admin-page__edit {
+  background-color: white;
+  color: #4d535b;
+  border-radius: 10px;
+  padding: 1px 20px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  font-size: 15px;
   font-weight: 500;
   border: 1px solid black;
   gap: 6px;
+  cursor: pointer;
+}
+
+.admin-page__info-header-tabmenu {
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+  align-items: center;
+}
+
+.admin-page__tabmenu-item {
+  color: #4d535b;
+  border-radius: 10px;
+  text-decoration: none;
+  font-size: 15px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.admin-page__tabmenu-item:first-child {
+  color: #1BAEE3;
 }

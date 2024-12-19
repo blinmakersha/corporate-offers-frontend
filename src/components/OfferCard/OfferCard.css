@@ -18,25 +18,25 @@
 }
 
 .offer-card__image {
-    height: 139px;
-    position: relative;
+  height: 139px;
+  position: relative;
 
-    img {
-        height: 100%;
-        width: 100%;
-        object-fit: cover;
-        border-radius: 10px;
-    }
+  img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+  }
 }
 
 .offer-card__sale {
-    position: absolute;
-    bottom: 9px;
-    left: 9px;
+  position: absolute;
+  bottom: 9px;
+  left: 9px;
 }
 
 .offer-card__info {
-    padding-top: 20px;
+  padding-top: 20px;
 }
 
 .offer-card__title {
@@ -45,10 +45,10 @@
 }
 
 .offer-card__description {
-    padding-top: 15px;
-    font-weight: 500;
-    height: 100px;
-    color: #8C8D8F;
+  padding-top: 15px;
+  font-weight: 500;
+  height: 100px;
+  color: #8c8d8f;
 }
 
 .offer-card__tag {
@@ -65,5 +65,23 @@
 }
 
 .offer-card__amount {
-    margin-left: 10px;
+  margin-left: 10px;
+}
+
+.offer-card__edit {
+  position: absolute;
+  top: 9px;
+  right: 9px;
+  background-color: white;
+  border-radius: 10px;
+  padding: 4px;
+}
+
+.offer-card__archive {
+  position: absolute;
+  bottom: 9px;
+  right: 9px;
+  background-color: white;
+  border-radius: 10px;
+  padding: 4px;
 }

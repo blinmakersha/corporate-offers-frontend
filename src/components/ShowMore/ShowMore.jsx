@@ -4,7 +4,7 @@ const ShowMore = (props) => {
   const { setPage } = props;
 
   return (
-    <a class="show-more" onClick={() => setPage((prev) => prev + 50)}>
+    <a className="show-more" onClick={() => setPage((prev) => prev + 50)}>
       Показать еще...
     </a>
   );
