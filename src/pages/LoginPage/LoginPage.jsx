@@ -49,44 +49,47 @@ const LoginPage = () => {
         },
     });
 
+    
     const handleLogout = () => {
         localStorage.removeItem('isAuthenticated');
         window.location.href = '/login';
     };
 
     return (
-        <div className="auth-page">
-            <h1>Авторизация</h1>
-            <form onSubmit={formik.handleSubmit} className="auth-form">
-                <div>
-                    <label htmlFor="username">Имя пользователя:</label>
+        <div className="login-page">
+            <h1 className="login-page__title">Авторизация</h1>
+            <form onSubmit={formik.handleSubmit} className="login-page__form">
+                <div className="login-page__input-group">
+                    <label htmlFor="username" className="login-page__label">Имя пользователя:</label>
                     <input
                         type="text"
                         id="username"
                         {...formik.getFieldProps('username')}
                         required
+                        className="login-page__input"
                     />
                     {formik.touched.username && formik.errors.username ? (
-                        <p className="error-message">{formik.errors.username}</p>
+                        <p className="login-page__error-message">{formik.errors.username}</p>
                     ) : null}
                 </div>
-                <div>
-                    <label htmlFor="password">Пароль:</label>
+                <div className="login-page__input-group">
+                    <label htmlFor="password" className="login-page__label">Пароль:</label>
                     <input
                         type="password"
                         id="password"
                         {...formik.getFieldProps('password')}
                         required
+                        className="login-page__input"
                     />
                     {formik.touched.password && formik.errors.password ? (
-                        <p className="error-message">{formik.errors.password}</p>
+                        <p className="login-page__error-message">{formik.errors.password}</p>
                     ) : null}
                 </div>
-                <button type="submit">Войти</button>
-                {formik.errors.server && <p className="error-message">{formik.errors.server}</p>}
+                <button type="submit" className="login-page__button">Войти</button>
+                {formik.errors.server && <p className="login-page__error-message">{formik.errors.server}</p>}
             </form>
             {localStorage.getItem('isAuthenticated') && (
-                <button onClick={handleLogout}>Выйти</button>
+                <button onClick={handleLogout} className="login-page__logout-button">Выйти</button>
             )}
         </div>
     );

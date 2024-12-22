@@ -1,4 +1,4 @@
-.auth-page {
+.login-page {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -7,7 +7,7 @@
     background-color: #d3d3d3;
 }
 
-.auth-form {
+.login-page__form {
     background-color: white;
     padding: 40px;
     border-radius: 8px;
@@ -16,17 +16,17 @@
     margin-top: 20px;
 }
 
-h1 {
+.login-page__title {
     text-align: center;
     color: #003366;
     margin-bottom: 50px;
 }
 
-label {
+.login-page__label {
     color: #003366;
 }
 
-input {
+.login-page__input {
     width: 100%;
     padding: 10px;
     margin: 10px 0;
@@ -35,11 +35,11 @@ input {
     font-size: 14px;
 }
 
-input::placeholder {
+.login-page__input::placeholder {
     color: #a9a9a9;
 }
 
-button {
+.login-page__button {
     width: 100%;
     padding: 10px;
     background-color: #003366;
@@ -50,6 +50,29 @@ button {
     font-size: 16px;
 }
 
-button:hover {
+.login-page__button:hover {
     background-color: #00509e;
+}
+
+.login-page__error-message {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+.login-page__logout-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #555;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.login-page__logout-button:hover {
+    background-color: #333;
+}
+
+.login-page__input-group {
+    margin-bottom: 15px;
 }
