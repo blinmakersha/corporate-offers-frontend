@@ -8,7 +8,7 @@ import "./index.css";
 import HomePage from "./pages/HomePage/HomePage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import AdminPage from "./pages/AdminPage/AdminPage";
-import CardPage from "./pages/CardPage/CardPage.jsx";
+import OfferCardPage from "./pages/OfferCardPage/OfferCardPage.jsx";
 import CreateOfferCard from "./pages/CreateOfferCardPage/CreateOfferCardPage.jsx";
 import Layout from "../src/components/Layout/Layout.jsx";
 
@@ -33,18 +33,18 @@ const router = createBrowserRouter([
     element: <LoginPage />,
   },
   {
-    path: "/cardpage",
-    element: <CardPage />,
+    path: "/offercardpage",
+    element: <OfferCardPage />,
   },
   {
     path: "create-offer-car",
     element: <CreateOfferCard />,
   },
   {  
-    path: "/card/:id",
+    path: "/offercardpage/:id",
     element: (
       <ProtectedRoute>
-        <CardPage />
+        <OfferCardPage />
       </ProtectedRoute>
     ),
   }
