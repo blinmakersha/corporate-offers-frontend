@@ -15,7 +15,6 @@
   font-size: 15px;
   font-weight: 500;
   opacity: 70%;
-  padding-bottom: 12px;
 }
 
 .admin-page__info-buttons {
@@ -88,6 +87,14 @@
   font-weight: 500;
 }
 
-.admin-page__tabmenu-item:first-child {
-  color: #1BAEE3;
+.admin-page__tabmenu-item.active {
+  color: #1baee3;
+  background-color: transparent;
+}
+
+.admin-page__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 12px;
 }
