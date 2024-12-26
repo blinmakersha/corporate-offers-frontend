@@ -1,22 +1,34 @@
 import React from "react";
 import "./OfferCard.css";
 import Chip from "../Chip/Chip";
+import { api } from "../../core/services/api";
 
 const OfferCard = (props) => {
-  const { data, isAdmin } = props;
+  const { data, setUpdateContent, isAdmin } = props;
+  const token = localStorage.getItem("AccessToken");
+
+  const handleMoveToArchive = () => {
+    api.ApiOfferCard.archiveOfferCard(data.id, token)
+      .then((response) => {
+        setUpdateContent(true);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
 
   return (
     <div className="offer-card">
       <div className="offer-card__image">
-        <img src={data.image} alt="img" />
+        <img src={data?.imagePath} alt="img" />
         <Chip
           className="offer-card__sale"
-          kind={data?.sale ? "sale" : "profit"}
+          kind={data?.discountSize ? "sale" : "profit"}
         >
-          {data?.sale ? data.sale : "ВЫГОДА"}
+          {data?.discountSize ? `-${data?.discountSize}%` : "ВЫГОДА"}
         </Chip>
         {isAdmin && (
-          <div className="offer-card__edit">
+          <a className="offer-card__edit">
             <svg
               width="24px"
               height="24px"
@@ -28,14 +40,14 @@ const OfferCard = (props) => {
               <path
                 d="M15.6287 5.12132L4.31497 16.435M15.6287 5.12132L19.1642 8.65685M15.6287 5.12132L17.0429 3.70711C17.4334 3.31658 18.0666 3.31658 18.4571 3.70711L20.5784 5.82843C20.969 6.21895 20.969 6.85212 20.5784 7.24264L19.1642 8.65685M7.85051 19.9706L4.31497 16.435M7.85051 19.9706L19.1642 8.65685M7.85051 19.9706L3.25431 21.0312L4.31497 16.435"
                 stroke="#000000"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               />
             </svg>
-          </div>
+          </a>
         )}
         {isAdmin && (
-          <div className="offer-card__archive">
+          <a className="offer-card__archive" onClick={handleMoveToArchive}>
             <svg
               width="24px"
               height="24px"
@@ -50,12 +62,14 @@ const OfferCard = (props) => {
                 fill="#080341"
               />
             </svg>
-          </div>
+          </a>
         )}
       </div>
       <div className="offer-card__info">
-        <h2 className="offer-card__title">{data.title}</h2>
-        <p className="offer-card__description">{data.description}</p>
+        <h2 className="offer-card__title">{data.name ?? <br></br>}</h2>
+        <p className="offer-card__description">
+          {data.annotation ?? <br></br>}
+        </p>
       </div>
       <div className="offer-card__tags">
         <div className="offer-card__tags_wrap">
@@ -93,15 +107,17 @@ const OfferCard = (props) => {
                   </g>
                 </g>
               </svg>
-              {data.city}
+              {data?.cities[0].name}
             </Chip>
-            <Chip className="offer-card__amount" kind="num">
-              {data.ammount}
-            </Chip>
+            {data?.cities?.length - 1 > 0 && (
+              <Chip className="offer-card__amount" kind="num">
+                +{data?.cities?.length - 1}
+              </Chip>
+            )}
           </div>
-          <p className="offer-card__tag">#{data.tag}</p>
+          <p className="offer-card__tag">#{data?.category.name}</p>
         </div>
-        <p className="offer-card__deadline">До {data.date}</p>
+        <p className="offer-card__deadline">До {data?.endDate}</p>
       </div>
     </div>
   );

@@ -1,31 +1,78 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import OfferCard from "../../components/OfferCard/OfferCard.jsx";
 import Filters from "../../components/Filters/Filters.jsx";
 import Accordion from "../../components/Accordion/Accordion.jsx";
 import "./AdminPage.css";
-import { testOfferCards } from "../../utils/testData";
 import ShowMore from "../../components/ShowMore/ShowMore.jsx";
+import { api } from "../../core/services/api";
+import { useNavigate } from "react-router-dom";
 
 const AdminPage = () => {
-  const [offerCards, setOfferCards] = useState(testOfferCards);
+  const [offers, setOffers] = useState([]);
+  const [updateContent, setUpdateContent] = useState(false);
   const [openFilter, setOpenFilter] = useState(false);
+  const [kind, setKind] = useState("active");
   const [page, setPage] = useState(10);
+  const navigate = useNavigate();
+  const token = localStorage.getItem("AccessToken");
+
+  useEffect(() => {
+    api.ApiOffers.getOffers(kind, token)
+      .then((response) => {
+        setOffers(response.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, [kind, updateContent]);
+
+  const handleLogout = () => {
+    api.ApiLogin.logoutUser(token)
+      .then(() => {
+        localStorage.removeItem("AccessToken");
+        localStorage.removeItem("user");
+        navigate("/login");
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
 
   return (
     <div className="admin-page">
-      <h3 className="admin-page__about-user">
-        Вы авторизованы как Администратор
-      </h3>
+      <div className="admin-page__header">
+        <h3 className="admin-page__about-user">
+          Вы авторизованы как Администратор
+        </h3>
+        <button onClick={handleLogout} className="logout-button">
+          Выйти
+        </button>
+      </div>
       <div className="admin-page__info-header">
         <h1 className="admin-page__main-title">Управление</h1>
         <div className="admin-page__info-header-tabmenu">
-          <a className="admin-page__tabmenu-item">
+          <a
+            className={`admin-page__tabmenu-item ${
+              kind == "active" ? "active" : ""
+            }`}
+            onClick={() => setKind("active")}
+          >
             Опубликованные
           </a>
-          <a className="admin-page__tabmenu-item">
+          <a
+            className={`admin-page__tabmenu-item ${
+              kind == "archived" ? "active" : ""
+            }`}
+            onClick={() => setKind("archived")}
+          >
             Архив
           </a>
-          <a className="admin-page__tabmenu-item">
+          <a
+            className={`admin-page__tabmenu-item ${
+              kind == "draft" ? "active" : ""
+            }`}
+            onClick={() => setKind("draft")}
+          >
             Черновик
           </a>
           <a href="/create-offer-card" className="admin-page__edit">
@@ -39,14 +86,14 @@ const AdminPage = () => {
               <path
                 d="M12 6.5L12 18.5"
                 stroke="black"
-                stroke-width="2"
-                stroke-linecap="round"
+                strokeWidth="2"
+                strokeLinecap="round"
               />
               <path
                 d="M18 12.5L6 12.5"
                 stroke="black"
-                stroke-width="2"
-                stroke-linecap="round"
+                strokeWidth="2"
+                strokeLinecap="round"
               />
             </svg>
             Создать новое предложение
@@ -84,15 +131,19 @@ const AdminPage = () => {
         </div>
       )}
       <div className="admin-page__wrap-offer-card">
-        {offerCards.map((item) => (
+        {offers.map((item) => (
           <span key={item.id}>
-            <OfferCard isAdmin data={item} />
+            <OfferCard
+              setUpdateContent={setUpdateContent}
+              isAdmin
+              data={item}
+            />
           </span>
         ))}
       </div>
-      <div className="admin-page__wrap-show-more">
+      {/* <div className="admin-page__wrap-show-more">
         <ShowMore setPage={setPage} />
-      </div>
+      </div> */}
     </div>
   );
 };

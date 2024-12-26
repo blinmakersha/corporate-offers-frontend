@@ -10,6 +10,7 @@
 .offer-card__tags {
   display: grid;
   gap: 10px;
+  padding-top: 10px;
 }
 
 .offer-card__tags_wrap {
@@ -47,8 +48,9 @@
 .offer-card__description {
   padding-top: 15px;
   font-weight: 500;
-  height: 100px;
+  height: 90px;
   color: #8c8d8f;
+  overflow: hidden;
 }
 
 .offer-card__tag {

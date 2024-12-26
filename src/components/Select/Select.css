@@ -1,0 +1,119 @@
+.select {
+  color: #707070;
+  width: 100%;
+  z-index: 1000;
+
+  text-align: left;
+  z-index: 1;
+  display: grid;
+  gap: 16px;
+  .select-box {
+    position: relative;
+    display: block;
+    width: 100%;
+    margin: 0 auto;
+    height: 40px;
+    /* font-size: 18px;
+    color: #60666d; */
+  }
+}
+
+.select-label {
+  margin-top: 16px;
+}
+
+.current-selected:focus + .select-item-list {
+  /* display: block; */
+  /* opacity: 1; */
+  /* animation-name: none; */
+}
+
+.current-selected {
+  position: relative;
+  border: 1px solid #d1d1d1;
+  border-radius: 4px;
+  cursor: pointer;
+  outline: none;
+  min-height: 20px;
+  padding: 5px 15px;
+  p {
+    margin: 0;
+  }
+
+  /* rotate arrow icon when in focus */
+  &:focus .select-icon {
+    transform: translateY(-50%) rotate(180deg);
+  }
+
+  .select-icon {
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translateY(-50%);
+    width: 20px;
+    transition: 0.2s ease;
+  }
+}
+
+.select-item-list {
+  position: absolute;
+  margin-top: 5px;
+  width: 100%;
+  padding: 0;
+  list-style: none;
+  /* opacity: 0; */
+  /* overflow: hidden; */
+  visibility: hidden;
+
+  /* z-index: -1000; */
+  /* display: none; */
+  /* animation-name: HideList;
+  animation-duration: 0.5s; */
+  /* animation-delay: 0.5s;
+  animation-fill-mode: forwards;
+  animation-timing-function: step-start; */
+  border: 1px solid "#d1d1d1";
+  border-radius: 4px;
+
+  /* @keyframes HideList { */
+    /* from {
+      transform: scaleY(1);
+    }
+    to {
+      transform: scaleY(-1);
+    }
+  } */
+}
+
+.select-item-list-option {
+  > label {
+    cursor: pointer;
+  }
+  .option-item-label {
+    display: block;
+    padding: 8px 13px;
+    background-color: #fff;
+  }
+  .option-item-label:hover,
+  .option-item-label:focus {
+    color: #546c84;
+    background-color: #fbfbfb;
+  }
+}
+
+.select-item-list--open {
+  /* opacity: 1; */
+  visibility: visible;
+  max-height: 200px; /* Adjust this value as needed */
+}
+
+.multi-select {
+  .select-item-list-option {
+    cursor: pointer;
+  }
+
+  .select-item-list-option.selected {
+    background-color: #e0e0e0;
+    color: #000;
+  }
+}

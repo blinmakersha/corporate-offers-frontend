@@ -1,44 +1,49 @@
 import ReactDOM from "react-dom/client";
-import {
-  createBrowserRouter,
-  Navigate,
-  RouterProvider,
-} from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./index.css";
 import HomePage from "./pages/HomePage/HomePage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import AdminPage from "./pages/AdminPage/AdminPage";
-import CreateOfferCard from "./pages/CreateOfferCardPage/CreateOfferCardPage.jsx";
+import CreateOfferCardPage from "./pages/CreateOfferCardPage/CreateOfferCardPage.jsx";
 import Layout from "../src/components/Layout/Layout.jsx";
-
-const ProtectedRoute = ({ children }) => {
-  const isAuthenticated = () => {
-    return localStorage.getItem("isAuthenticated") === "true";
-  };
-  return isAuthenticated() ? children : <Navigate to="/login" replace />;
-};
+import ProtectedRoute from "./core/routes/ProtectedRoute.jsx";
+import { UserProvider } from "./utils/UserProvider";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <HomePage />,
+    element: (
+      <ProtectedRoute roles={["Employee", "Admin"]}>
+        <HomePage />
+      </ProtectedRoute>
+    ),
   },
   {
     path: "/admin",
-    element: <AdminPage />,
+    element: (
+      <ProtectedRoute roles={["Admin"]}>
+        <AdminPage />
+      </ProtectedRoute>
+    ),
   },
   {
     path: "/login",
     element: <LoginPage />,
   },
   {
-    path: "create-offer-car",
-    element: <CreateOfferCard />,
+    path: "create-offer-card",
+    element: (
+      <ProtectedRoute roles={["Admin"]}>
+        <CreateOfferCardPage />
+      </ProtectedRoute>
+    ),
   },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <Layout>
-    <RouterProvider router={router} />
+    <UserProvider>
+      <RouterProvider router={router} />
+    </UserProvider>
   </Layout>
 );

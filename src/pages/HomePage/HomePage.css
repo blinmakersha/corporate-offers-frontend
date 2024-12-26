@@ -15,7 +15,6 @@
   font-size: 15px;
   font-weight: 500;
   opacity: 70%;
-  padding-bottom: 12px;
 }
 
 .home-page__info-buttons {
@@ -66,4 +65,11 @@
   font-weight: 500;
   border: 1px solid black;
   gap: 6px;
+}
+
+.home-page__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 12px;
 }

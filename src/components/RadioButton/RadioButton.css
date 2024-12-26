@@ -1,0 +1,40 @@
+.radio {
+  font-size: 1rem;
+  padding-bottom: 0.25rem;
+  display: block;
+}
+
+.radio-input {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+  & + span {
+    color: #707070;
+    padding: 0.25rem;
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    font-weight: 400;
+    &:before {
+      content: "";
+      display: inline-block;
+      margin-left: 0.25rem;
+      width: 0.85em;
+      height: 0.85em;
+      vertical-align: -0.25em;
+      border-radius: 1em;
+      border: 0.125em solid #fff;
+      box-shadow: 0 0 0 0.1em #707070;
+      margin-right: 0.75em;
+      transition: 0.5s ease all;
+    }
+  }
+  &:checked + span::before {
+    background: #707070;
+  }
+}
