@@ -1,5 +1,18 @@
 import axios from "axios";
 
+async function getOffer(id, token) {
+  try {
+    const response = await axios.get(`/offers/${id}`, {
+      headers: {
+        Authorization: "Bearer " + token,
+      },
+    });
+    return response;
+  } catch (error) {
+    return 400;
+  }
+}
+
 async function createOfferCard(payload, token) {
   try {
     const response = await axios.post("/offers", payload, {
@@ -30,7 +43,7 @@ async function archiveOfferCard(id, token) {
 
 async function editOfferCard(id, payload, token) {
   try {
-    const response = await axios.put(`/offers${id}`, payload, {
+    const response = await axios.put(`/offers/${id}`, payload, {
       headers: {
         Authorization: "Bearer " + token,
       },
@@ -43,6 +56,7 @@ async function editOfferCard(id, payload, token) {
 }
 
 export const ApiOfferCard = {
+  getOffer,
   createOfferCard,
   editOfferCard,
   archiveOfferCard
