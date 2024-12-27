@@ -121,7 +121,15 @@ const HomePage = () => {
       </div>
       <div className="home-page__info-buttons">
         <Filters openFilter={openFilter} setOpenFilter={setOpenFilter} />
-        <a href="" className="home-page__guide">
+        <a
+          target="_target"
+          href={
+            roleUser == "Employee"
+              ? "https://docs.google.com/document/d/160I2l7gCSkrIgGGV6PVtLO67VZvkTRe45mahBw9Dgls/edit?usp=sharing"
+              : "https://docs.google.com/document/d/1vhuHbr2bHrXmMUd72JK1FUZy6CXUia7RG-znR5OJwoc/edit?usp=sharing"
+          }
+          className="home-page__guide"
+        >
           Как воспользоваться скидкой?
         </a>
       </div>
