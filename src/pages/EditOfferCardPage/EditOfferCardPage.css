@@ -1,0 +1,143 @@
+.create-offer-card-page__main-title {
+  color: #455162;
+  font-size: 50px;
+  font-weight: 500;
+}
+
+.create-offer-card-page__info-buttons {
+  display: flex;
+  justify-content: flex-end;
+  padding: 22px 0;
+  align-items: center;
+}
+
+.create-offer-card-page__exit {
+  background-color: white;
+  color: #4d535b;
+  border-radius: 10px;
+  padding: 1px 20px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  font-size: 15px;
+  font-weight: 500;
+  gap: 6px;
+}
+
+.create-offer-card-page__info-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.create-offer-card-page__wrap {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 100px;
+}
+
+.create-offer-card-page__photo {
+  background-color: white;
+  border-radius: 20px;
+  height: 250px;
+  padding: 15px;
+  display: grid;
+  align-content: space-between;
+  -webkit-box-shadow: 0px 4px 14px 0px rgba(34, 60, 80, 0.25);
+  -moz-box-shadow: 0px 4px 14px 0px rgba(34, 60, 80, 0.25);
+  box-shadow: 0px 4px 14px 0px rgba(34, 60, 80, 0.25);
+}
+
+.create-offer-card-page__photo-img {
+  height: 139px;
+  img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+}
+
+.create-offer-card-page__photo-upload {
+  margin-top: 20px;
+  font-size: 15px;
+  font-weight: 400;
+  background-color: #0d42ff;
+  color: white;
+  border-color: #010837;
+  border-radius: 10px;
+  padding: 10px 20px;
+  cursor: pointer;
+  border: 1px solid #010837;
+  transition: all 0.3s;
+  display: inline-block;
+}
+
+.create-offer-card-page__photo-upload:hover {
+  background-color: #0f39d3;
+}
+
+.create-offer-card-page__item-title {
+  color: #707070;
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.create-offer-card-page__items {
+  display: grid;
+  gap: 50px;
+  padding-bottom: 50px;
+}
+
+.create-offer-card-page__item {
+  display: grid;
+  gap: 30px;
+}
+
+.create-offer-card-page__item__duration {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 45px;
+}
+
+.create-offer-card-page__edit-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.create-offer-card-page__publish-button {
+  font-size: 15px;
+  font-weight: 400;
+  background-color: #0d42ff;
+  color: white;
+  border-color: #010837;
+  border-radius: 10px;
+  padding: 10px 20px;
+  cursor: pointer;
+  border: 1px solid #010837;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+}
+
+.create-offer-card-page__publish-button:hover {
+  background-color: #0f39d3;
+}
+
+.create-offer-card-page__draft-button {
+  font-size: 15px;
+  font-weight: 400;
+  background-color: #ffffff;
+  color: #010837;
+  border-radius: 10px;
+  padding: 10px 20px;
+  cursor: pointer;
+  border: 1px solid #010837;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+}
+
+.create-offer-card-page__draft-button:hover {
+  background-color: #e8e8e8;
+}

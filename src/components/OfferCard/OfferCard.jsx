@@ -28,7 +28,7 @@ const OfferCard = (props) => {
           {data?.discountSize ? `-${data?.discountSize}%` : "ВЫГОДА"}
         </Chip>
         {isAdmin && (
-          <a className="offer-card__edit">
+          <a href={`/edit-offer-card/${data.id}`} className="offer-card__edit">
             <svg
               width="24px"
               height="24px"
@@ -47,7 +47,11 @@ const OfferCard = (props) => {
           </a>
         )}
         {isAdmin && (
-          <a className="offer-card__archive" onClick={handleMoveToArchive}>
+          <a
+            href="/admin"
+            className="offer-card__archive"
+            onClick={handleMoveToArchive}
+          >
             <svg
               width="24px"
               height="24px"
@@ -115,9 +119,16 @@ const OfferCard = (props) => {
               </Chip>
             )}
           </div>
-          <p className="offer-card__tag">#{data?.category.name}</p>
+          <p className="offer-card__tag">#{data?.category?.name}</p>
         </div>
-        <p className="offer-card__deadline">До {data?.endDate}</p>
+        <p className="offer-card__deadline">
+          До{" "}
+          {new Date(data?.endDate).toLocaleDateString("ru-RU", {
+            year: "numeric",
+            month: "2-digit",
+            day: "2-digit",
+          })}
+        </p>
       </div>
     </div>
   );
