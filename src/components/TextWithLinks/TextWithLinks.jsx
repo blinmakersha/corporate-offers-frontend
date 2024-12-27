@@ -1,7 +1,7 @@
 import React from "react";
 
 const TextWithLinks = ({ text }) => {
-  const regex = typeof text === "string" ? /(https?\/\/[^\s]+)/g : null;
+  const regex = typeof text === "string" ? /(https:?\/\/[^\s]+)/g : null;
 
   const highlightedText = regex
     ? text.replace(regex, (match) => {
