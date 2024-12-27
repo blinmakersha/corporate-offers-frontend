@@ -15,18 +15,58 @@ const HomePage = () => {
   const navigate = useNavigate();
   const token = localStorage.getItem("AccessToken");
   const roleUser = JSON.parse(user).user.role;
+  const [categories, setCategories] = useState([]);
+  const [cities, setCities] = useState([]);
+  const [city, setCity] = useState({});
+  const [category, setCategory] = useState({});
 
   useEffect(() => {
-    api.ApiOffers.getOffers("active", token)
+    api.ApiCities.getCities(token)
       .then((response) => {
-        setOffers(response.data);
-        console.log(response.data);
+        setCities(response.data.cities);
       })
       .catch((error) => {
         console.error(error);
       });
-    console.log(offers);
+    api.ApiCategories.getCategories(token)
+      .then((response) => {
+        setCategories(response.data.categories);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   }, []);
+
+  useEffect(() => {
+    api.ApiOffers.getOffers("active", token, {
+      city: city.name,
+      category: category.name,
+    })
+      .then((response) => {
+        setOffers(response.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, [city, category]);
+
+  const selectCity = (id) => {
+    if (city.id == id) {
+      setCity("");
+    } else {
+      setCity((prevCity) => cities.find((city) => city.id === id));
+    }
+  };
+
+  const selectCategory = (id) => {
+    if (category.id == id) {
+      setCategory("");
+    } else {
+      setCategory((prevCategory) =>
+        categories.find((category) => category.id === id)
+      );
+    }
+  };
 
   const handleLogout = () => {
     api.ApiLogin.logoutUser(token)
@@ -87,21 +127,43 @@ const HomePage = () => {
       </div>
       {openFilter && (
         <div className="home-page__filters">
-          <Accordion
-            title="Все города"
-            content="<a>Город 1</a><a>Город 2</a><a>Город 3</a>"
-          />
-          <Accordion
-            title="Все категории"
-            content="<a>Категория 1</a><a>Категория 2</a><a>Категория 3</a>"
-          />
+          <Accordion title="Все города">
+            {cities.map((cityItem) => (
+              <a
+                key={cityItem.id}
+                onClick={() => selectCity(cityItem.id)}
+                className={`city-link ${
+                  cityItem.id == city.id ? "active" : ""
+                }`}
+              >
+                {cityItem.name}
+              </a>
+            ))}
+          </Accordion>
+          <Accordion title="Все категории">
+            {categories.map((categoryItem) => (
+              <a
+                key={categoryItem.id}
+                onClick={() => selectCategory(categoryItem.id)}
+                className={`category-link ${
+                  categoryItem.id == category.id ? "active" : ""
+                }`}
+              >
+                {categoryItem.name}
+              </a>
+            ))}
+          </Accordion>
         </div>
       )}
       <div className="home-page__wrap-offer-card">
         {offers.map((item) => (
-          <span key={item.id}>
+          <a
+            className="home-page__item"
+            href={`/offer/${item.id}`}
+            key={item.id}
+          >
             <OfferCard data={item} />
-          </span>
+          </a>
         ))}
       </div>
       {/* <div className="home-page__wrap-show-more">
