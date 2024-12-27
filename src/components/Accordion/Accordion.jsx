@@ -2,14 +2,10 @@ import React, { useEffect, useRef, useState } from "react";
 
 import "./Accordion.css";
 
-function Accordion(props) {
+function Accordion({ title, children }) {
   const [active, setActive] = useState(false);
   const content = useRef(null);
   const [height, setHeight] = useState("0px");
-
-  useEffect(() => {
-    console.log("Height for ", props.title, ": ", height);
-  }, [height]);
 
   function toggleAccordion() {
     setActive(!active);
@@ -33,17 +29,14 @@ function Accordion(props) {
             <path d="M5.25 7.875L10.5 13.125L15.75 7.875" stroke="#222222" />
           </svg>
         </span>
-        <p className="accordion__title">{props.title}</p>
+        <p className="accordion__title">{title}</p>
       </div>
       <div
         ref={content}
         style={{ maxHeight: `${height}` }}
         className="accordion__content"
       >
-        <div
-          className="accordion__text"
-          dangerouslySetInnerHTML={{ __html: props.content }}
-        />
+        <div className="accordion__text">{children}</div>
       </div>
     </div>
   );
