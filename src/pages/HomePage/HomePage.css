@@ -73,3 +73,15 @@
   align-items: center;
   padding-bottom: 12px;
 }
+
+.home-page__item {
+  text-decoration: none;
+}
+
+.city-link.active {
+  color: #1baee3;
+}
+
+.category-link.active {
+  color: #1baee3;
+}
