@@ -5,6 +5,8 @@ import HomePage from "./pages/HomePage/HomePage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import AdminPage from "./pages/AdminPage/AdminPage";
 import CreateOfferCardPage from "./pages/CreateOfferCardPage/CreateOfferCardPage.jsx";
+import EditOfferCardPage from "./pages/EditOfferCardPage/EditOfferCardPage.jsx";
+import OfferCardPage from "./pages/OfferCardPage/OfferCardPage.jsx";
 import Layout from "../src/components/Layout/Layout.jsx";
 import ProtectedRoute from "./core/routes/ProtectedRoute.jsx";
 import { UserProvider } from "./utils/UserProvider";
@@ -35,6 +37,22 @@ const router = createBrowserRouter([
     element: (
       <ProtectedRoute roles={["Admin"]}>
         <CreateOfferCardPage />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "edit-offer-card/:id",
+    element: (
+      <ProtectedRoute roles={["Admin"]}>
+        <EditOfferCardPage />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/offer/:id",
+    element: (
+      <ProtectedRoute roles={["Employee", "Admin"]}>
+        <OfferCardPage />
       </ProtectedRoute>
     ),
   },
