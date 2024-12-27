@@ -14,12 +14,10 @@ const OfferCardPage = () => {
     api.ApiOfferCard.getOffer(id, token)
       .then((response) => {
         setOffer(response.data);
-        console.log(response.data);
       })
       .catch((error) => {
         console.error(error);
       });
-    console.log(offer);
   }, []);
 
   return (

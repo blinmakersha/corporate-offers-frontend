@@ -94,7 +94,6 @@ const EditOfferCardPage = () => {
   const handleChangeSelect = (e) => {
     setSelectedOptionType(e.target.id);
   };
-  console.log(endDate);
   const handleEditOfferCard = (e, status) => {
     api.ApiOfferCard.editOfferCard(
       id,

@@ -82,7 +82,6 @@ const AdminPage = () => {
   const selectCity = (id) => {
     setCity(cities.filter((city) => city.id === id));
   };
-  console.log(city);
   return (
     <div className="admin-page">
       <div className="admin-page__header">
