@@ -4,9 +4,16 @@ import { Navigate } from "react-router-dom";
 const ProtectedRoute = ({ children, roles }) => {
   const accessToken = localStorage.getItem("AccessToken");
   const user = localStorage.getItem("user");
-  const roleUser = JSON.parse(user).user.role;
+  let roleUser;
+  if (user) {
+    roleUser = JSON.parse(user).user.role;
+  }
 
-  return accessToken && roles.includes(roleUser) ? children : <Navigate to="/login" replace />;
+  return accessToken && roles.includes(roleUser) ? (
+    children
+  ) : (
+    <Navigate to="/login" replace />
+  );
 };
 
 export default ProtectedRoute;

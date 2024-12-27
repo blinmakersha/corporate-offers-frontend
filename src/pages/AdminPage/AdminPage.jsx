@@ -12,19 +12,60 @@ const AdminPage = () => {
   const [updateContent, setUpdateContent] = useState(false);
   const [openFilter, setOpenFilter] = useState(false);
   const [kind, setKind] = useState("active");
-  const [page, setPage] = useState(10);
+  const [cities, setCities] = useState([]);
+  const [city, setCity] = useState({});
+  const [category, setCategory] = useState({});
+  const [categories, setCategories] = useState([]);
   const navigate = useNavigate();
   const token = localStorage.getItem("AccessToken");
 
   useEffect(() => {
-    api.ApiOffers.getOffers(kind, token)
+    api.ApiCities.getCities(token)
+      .then((response) => {
+        setCities(response.data.cities);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+    api.ApiCategories.getCategories(token)
+      .then((response) => {
+        setCategories(response.data.categories);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
+
+  useEffect(() => {
+    api.ApiOffers.getOffers(kind, token, {
+      city: city.name,
+      category: category.name,
+    })
       .then((response) => {
         setOffers(response.data);
       })
       .catch((error) => {
         console.error(error);
       });
-  }, [kind, updateContent]);
+  }, [kind, updateContent, city, category]);
+
+  const onClickSelectCity = (id) => {
+    if (city.id == id) {
+      setCity("");
+    } else {
+      setCity((prevCity) => cities.find((city) => city.id === id));
+    }
+  };
+
+  const onClickSelectCategory = (id) => {
+    if (category.id == id) {
+      setCategory("");
+    } else {
+      setCategory((prevCategory) =>
+        categories.find((category) => category.id === id)
+      );
+    }
+  };
 
   const handleLogout = () => {
     api.ApiLogin.logoutUser(token)
@@ -38,6 +79,9 @@ const AdminPage = () => {
       });
   };
 
+  const selectCity = (id) => {
+    setCity(cities.filter((city) => city.id === id));
+  };
   return (
     <div className="admin-page">
       <div className="admin-page__header">
@@ -120,25 +164,47 @@ const AdminPage = () => {
       </div>
       {openFilter && (
         <div className="admin-page__filters">
-          <Accordion
-            title="Все города"
-            content="<a>Город 1</a><a>Город 2</a><a>Город 3</a>"
-          />
-          <Accordion
-            title="Все категории"
-            content="<a>Категория 1</a><a>Категория 2</a><a>Категория 3</a>"
-          />
+          <Accordion title="Все города">
+            {cities.map((cityItem) => (
+              <a
+                key={cityItem.id}
+                onClick={() => onClickSelectCity(cityItem.id)}
+                className={`city-link ${
+                  cityItem.id == city.id ? "active" : ""
+                }`}
+              >
+                {cityItem.name}
+              </a>
+            ))}
+          </Accordion>
+          <Accordion title="Все категории">
+            {categories.map((categoryItem) => (
+              <a
+                key={categoryItem.id}
+                onClick={() => onClickSelectCategory(categoryItem.id)}
+                className={`category-link ${
+                  categoryItem.id == category.id ? "active" : ""
+                }`}
+              >
+                {categoryItem.name}
+              </a>
+            ))}
+          </Accordion>
         </div>
       )}
       <div className="admin-page__wrap-offer-card">
         {offers.map((item) => (
-          <span key={item.id}>
+          <a
+            className="admin-page__item"
+            href={`/offer/${item.id}`}
+            key={item.id}
+          >
             <OfferCard
               setUpdateContent={setUpdateContent}
               isAdmin
               data={item}
             />
-          </span>
+          </a>
         ))}
       </div>
       {/* <div className="admin-page__wrap-show-more">

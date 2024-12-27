@@ -38,7 +38,7 @@ const LoginPage = () => {
       api.ApiLogin.loginUser(values)
         .then((result) => {
           localStorage.setItem("AccessToken", result.accessToken);
-          localStorage.setItem("user", JSON.stringify(result))
+          localStorage.setItem("user", JSON.stringify(result));
           setUser({ ...result, token: result.accessToken });
           navigate("/");
         })
