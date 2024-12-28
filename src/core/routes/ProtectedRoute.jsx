@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Navigate } from "react-router-dom";
+import { api } from "../services/api";
 
 const ProtectedRoute = ({ children, roles }) => {
   const accessToken = localStorage.getItem("AccessToken");
@@ -8,6 +9,16 @@ const ProtectedRoute = ({ children, roles }) => {
   if (user) {
     roleUser = JSON.parse(user).user.role;
   }
+  useEffect(() => {
+    api.ApiCities.getCities(accessToken)
+      .then(() => {})
+      .catch((error) => {
+        if (error.status == 401) {
+          localStorage.removeItem("AccessToken");
+          localStorage.removeItem("user");
+        }
+      });
+  }, []);
 
   return accessToken && roles.includes(roleUser) ? (
     children

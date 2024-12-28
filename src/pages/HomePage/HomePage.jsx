@@ -14,7 +14,10 @@ const HomePage = () => {
   const user = localStorage.getItem("user");
   const navigate = useNavigate();
   const token = localStorage.getItem("AccessToken");
-  const roleUser = JSON.parse(user).user.role;
+  let roleUser;
+  if (user) {
+    roleUser = JSON.parse(user).user.role;
+  }
   const [categories, setCategories] = useState([]);
   const [cities, setCities] = useState([]);
   const [city, setCity] = useState({});

@@ -9,7 +9,7 @@ async function getCities(token) {
     });
     return response;
   } catch (error) {
-    return 400;
+    return error;
   }
 }
 
